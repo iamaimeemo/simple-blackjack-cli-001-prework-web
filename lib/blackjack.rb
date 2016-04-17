@@ -18,11 +18,13 @@ def prompt_user
 end
 
 def get_user_input
-  gets.chomp 
+  gets.chomp.strip
 end
+
 
 def invalid_command
 puts "Please enter a valid command" 
+prompt_user
 end
 
 def initial_round 
@@ -35,22 +37,16 @@ end
 
 
 def hit? (card_total)
-  card_total = initial_round
-  binding.pry
-  prompt_user
-  get_user_input
-  if get_user_input == "s" 
-   display_card_total (card_total)
-  elsif get_user_input == "h"
-   deal_card
-   card_total + deal_card = card_total
-   display_card_total (card_total)
-    return card_total
-  else 
-   invalid_command
- end
-    prompt_user
-  end
+   prompt_user
+   user_input = get_user_input
+   if user_input == "s"
+     card_total
+    elsif user_input == "h"
+      card_total += deal_card
+    else
+      invalid_command
+    end
+end
 
 
 def end_game (card_total)
@@ -64,12 +60,12 @@ end
 # get every test to pass before coding runner below #
 #####################################################
 
-#def runner
-  #welcome
-  #initial_round
-    #loop do 
-    #hit?
-    #until card_total > 21 
-    #end_game
-#end
-#end
+def runner
+  welcome
+  card_total = initial_round
+  until card_total > 21
+    card_total = hit?(card_total)
+    display_card_total(card_total)
+  end
+  end_game(card_total)
+end
