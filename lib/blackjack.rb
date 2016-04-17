@@ -36,6 +36,7 @@ end
 
 def hit? (card_total)
   card_total = initial_round
+  binding.pry
   prompt_user
   get_user_input
   if get_user_input == "s" 
