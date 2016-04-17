@@ -9,10 +9,6 @@ def deal_card
   rand(1..11)
   end 
 
-def card_total
-  total = deal_card + deal_card
-end
-
 def display_card_total (card_total)
  puts "Your cards add up to #{card_total}"
 end
@@ -39,8 +35,7 @@ end
 
 
 def hit? (card_total)
-  card_total
-  binding.pry
+  card_total = initial_round
   prompt_user
   get_user_input
   if get_user_input == "s" 
